@@ -1,4 +1,4 @@
-{ "FirstName":"George", "LastName":"Washington", "Age": 67, "Height":74", "Nationality":"American"  }
+{ "FirstName":"George", "LastName":"Washington", "Age": 67, "Height":74, "Nationality":"American"  }
 { "FirstName":"John", "LastName":"Adams", "Age": 90, "Height":67, "Nationality":"American"  }
 { "FirstName":"Thomas", "LastName":"Jefferson", "Age": 83, "Height":74, "Nationality":"American"  }
 { "FirstName":"James", "LastName":"Madison", "Age": 85, "Height":64, "Nationality":"American"  }

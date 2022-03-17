@@ -14,5 +14,6 @@
 void CSVHeader(char* csvHeader);
 void FormatAsCSV(const char* json, char* csvLine);
 void GetAge(const char* json, char* ageString);
+char* GetStringInBetween(char* json, const char* startStr, const char* endStr);
 
 #endif //FORMATTING_H
