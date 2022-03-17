@@ -1,9 +1,9 @@
 // Title: Lab 1 - FileProcessing.cpp
 //
-// Purpose: **<state your purpose here>
+// Purpose: this program is to ask for input and output files as well as calculate information found
 //
 // Class: CSC 2430 Winter 2022
-// Author: **<your name goes here>
+// Author: Sesen Yonas
 
 #include <cassert>
 
@@ -51,6 +51,7 @@ void ProcessFiles() {
     bool continueProgram = true;
 
     do{
+        // starts the loop for asking for input
         cout << "Input File Name: ";
         getline(cin,File);
 
