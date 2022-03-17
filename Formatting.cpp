@@ -1,9 +1,11 @@
 // Title: Lab 1 - Formatting.cpp
 //
-// Purpose: **<state your purpose here>
+// Purpose: The programs found in the file is used to get ages found in json files
+//          get strings found between two strings, formating the found infromation
+//          into  a csv file as well as creates a header.
 //
 // Class: CSC 2430 Winter 2022
-// Author: **<your name goes here>
+// Author: Sesen Yonas
 
 #include <cassert>
 
@@ -25,6 +27,7 @@ using std::string;
 //      CSV header
 void CSVHeader(char* csvHeader) {
 
+
     const char* CSVheader  = "FirstName, LastName, Age, Height, Nationality ";
     strcpy(csvHeader,CSVheader);
 
@@ -39,16 +42,20 @@ void CSVHeader(char* csvHeader) {
 // Returns:
 //      CSV formatted line
 void FormatAsCSV(const char* json, char* csvLine) {
+    //creates a copy for json
     char* JSONcp = new char[strlen(json)+1];
     strcpy(JSONcp,json);
 
+    // gathers arll the found strings with the GetStringInBetween function
     char* fName = GetStringInBetween(JSONcp,"\"FirstName\":\"","\"");
     char* LName = GetStringInBetween(JSONcp,"\"LastName\":\"","\"");
     char* age = new char[100];
     GetAge(JSONcp,age);
-    char* height = GetStringInBetween(JSONcp,"\"Height\":\"",",");
+    char* height = GetStringInBetween(JSONcp,"\"Height\":",",");
     char* nat = GetStringInBetween(JSONcp,"\"Nationality\":\"","\"");(json);
 
+
+    // adds all the found strings and and commas to the copy c string
     strcpy(csvLine,fName);
     strcat(csvLine,",");
     strcat(csvLine,LName);
@@ -62,20 +69,32 @@ void FormatAsCSV(const char* json, char* csvLine) {
 
 }
 
-
+// Gets the string between the two parameters sent
+//
+//
+// Parameters:
+//      json - JSON formatted line
+//      startStr- first string
+//      endStr - end string
+// Returns:
+//      string found in between
 char* GetStringInBetween(char* json, const char* startStr, const char* endStr){
-
+    //checks if its null
     if(strstr(json,startStr) != nullptr){
         if(strlen(startStr) != 0){
 
+            // creates a starting pointer and gets the start and end positions
             char* startPtr = strstr(json,startStr);
             char* startPosition = (startPtr + strlen(startStr));
             char* endPosition = strstr(startPosition,endStr);
 
+            //checks if end position is null
             if(endPosition == nullptr) {
                 endPosition = strstr(startPosition, " ");
             }
 
+
+            //allocates the spaces
             char* spaces = new char[endPosition-startPosition+1];
 
             for (int i =0; i<(endPosition-startPosition); i++){
@@ -88,7 +107,8 @@ char* GetStringInBetween(char* json, const char* startStr, const char* endStr){
     }
 
     else {
-        char nothingStr[] = "";
+        // important for the zendaya no last name case
+        static char nothingStr[] = "";
         return nothingStr;
     }
     return nullptr;
@@ -111,6 +131,7 @@ void GetAge(const char* json,char* ageString) {
     char* JSONcp = new char[strlen(json)+1];
     strcpy(JSONcp,json);
 
+    // uses the GetStringInBetween
     char* ages = GetStringInBetween(JSONcp,"\"Age\":",",");
     for (int i =0; i<strlen(ages); i++){
         ageString[i] = ages[i];
@@ -118,6 +139,8 @@ void GetAge(const char* json,char* ageString) {
 
     ageString[strlen(ages)] = '\0';
 
+
+    //remember to delete!
     delete[] JSONcp;
 
 }

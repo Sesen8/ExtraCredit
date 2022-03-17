@@ -81,6 +81,8 @@ void ProcessFiles() {
     } while(GetFile);
 
     while(continueProgram){
+        // for asking about csv file
+        // simular to asking about json file
         char csvFormat[] = ".csv";
 
         do {
@@ -99,16 +101,25 @@ void ProcessFiles() {
 
         csv.open(fileCstring);
         if(jsonFile.is_open()){
-            int max = INT32_MIN;
-            int min = INT32_MAX;
+
+            // for calculations
             double sum = 0;
             double avg = 0.0;
             int count = 0;
             int age = 0;
+
+
+            // max is set to smallest
+            int max = INT32_MIN;
+            //min is set to largest
+            int min = INT32_MAX;
+
+            // for holding pointer values
             char hold[100] = "";
             char buffer[500];
             char head[500];
 
+            // calls csvHeader function
             CSVHeader(head);
             csv << head << endl;
 
@@ -120,6 +131,7 @@ void ProcessFiles() {
                     csv << csvData << endl;
                 }
 
+                //holds the age found and converts to string
                 if(strcmp(buffer,"") != 0){
                     GetAge(buffer,hold);
                     age = stoi(hold);
@@ -133,6 +145,7 @@ void ProcessFiles() {
                     }
                     count++;
                     sum+=age;
+                    // dont need to convert since its already a double
                     avg = sum/count;
                 }
             }
@@ -142,9 +155,13 @@ void ProcessFiles() {
             cout << "Average Age: " << avg << endl;
 
         }
+        // always close file
         jsonFile.close();
 
         do{
+            //starts loop all over again for inputing.
+            // same as above code
+
             cout << "Input File Name: ";
             getline(cin,File);
 
