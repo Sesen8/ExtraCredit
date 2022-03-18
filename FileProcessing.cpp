@@ -39,13 +39,15 @@ using std::getline;
 //      nothing
 void ProcessFiles() {
 
+    ifstream jsonFile;
     ofstream csv;
     string File;
-    //char fileData;
+
+  
     char csvData[500] = "";
     char* fileCstring;
     char* inputFile;
-    ifstream jsonFile;
+
     char jsonFormat[] = ".json";
     bool GetFile = true;
     bool continueProgram = true;
